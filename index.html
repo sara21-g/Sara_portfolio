@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sara Ghotge | Creative Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap');
+
+        :root {
+            /* Pastel Color Palette */
+            --primary: #C7BBE3;
+            --secondary: #FFD8BE;
+            --accent: #BDE0FE;
+            --light: #FEFCFF;
+            --dark: #6D6875;
+            --text-main: #4A4A68;
+            --text-light: #8B8797;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Custom cursor */
+        .custom-cursor {
+            pointer-events: none;
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgba(199, 187, 227, 0.6);
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s, transform 0.1s linear;
+            z-index: 9999;
+            mix-blend-mode: difference;
+        }
+
+        .custom-cursor-outer {
+            pointer-events: none;
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(199, 187, 227, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.4s, height 0.4s, border-color 0.4s, transform 0.2s linear;
+            z-index: 9999;
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 300% 300%;
+            animation: gradient-shift 10s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Hero section */
+        .hero-section {
+            background: radial-gradient(circle at 50% 50%, #E6DFF0, var(--primary), #D7CBEB);
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23EAE6F0' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 12s infinite linear;
+        }
+
+        .shape1 {
+            width: 150px;
+            height: 150px;
+            background: var(--secondary);
+            top: 20%;
+            left: 10%;
+            animation-duration: 35s;
+        }
+
+        .shape2 {
+            width: 100px;
+            height: 100px;
+            background: var(--accent);
+            top: 60%;
+            left: 20%;
+            animation-duration: 25s;
+            animation-delay: 1s;
+        }
+
+        .shape3 {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            top: 30%;
+            right: 15%;
+            animation-duration: 30s;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-60px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+
+        /* Navigation */
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 4px;
+            color: var(--text-main);
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: -100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: left 0.3s ease;
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            left: 0;
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        /* Glass card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            box-shadow: 0 6px 24px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        /* Gradient border */
+        .gradient-border {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            padding: 2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            background-size: 200% 200%;
+            animation: border-animation 4s linear infinite;
+        }
+
+        .gradient-border > * {
+            border-radius: 14px;
+            background: white;
+        }
+
+        @keyframes border-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Gallery items */
+        .gallery-item {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            overflow: hidden;
+            position: relative;
+            border-radius: 16px;
+            background-color: white;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            transition: transform 0.5s ease;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(199, 187, 227, 0.8), rgba(255, 216, 190, 0.5), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .gallery-item:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-overlay-content {
+            transform: translateY(20px);
+            transition: transform 0.4s ease 0.1s;
+        }
+
+        .gallery-item:hover .project-overlay-content {
+            transform: translateY(0);
+        }
+
+        /* Skills */
+        .skill-bar-container {
+            margin-bottom: 20px;
+        }
+
+        .skill-bar {
+            height: 10px;
+            border-radius: 5px;
+            background-color: #EDE9F2;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            border-radius: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+
+        /* Fade in animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Buttons */
+        .gradient-btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            border-radius: 30px;
+            padding: 12px 28px;
+            font-weight: bold;
+            transition: all 0.4s ease;
+            background-size: 200% auto;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(119, 112, 133, 0.2);
+            text-decoration: none;
+        }
+
+        .gradient-btn:hover {
+            background-position: right center;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(199, 187, 227, 0.3);
+        }
+
+        .outline-btn {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 30px;
+            padding: 10px 26px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .outline-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(199, 187, 227, 0.25);
+        }
+
+        .hero-section .outline-btn {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: var(--light);
+            color: var(--light);
+        }
+
+        .hero-section .outline-btn:hover {
+            background-color: var(--light);
+            color: var(--primary);
+            border-color: var(--light);
+        }
+
+        /* Form styles */
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            border: 1px solid #DCD9E2;
+            color: var(--text-main);
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(199, 187, 227, 0.4);
+            border-color: var(--primary);
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: var(--text-light);
+            opacity: 0.8;
+        }
+
+        /* Tags */
+        .tag {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: inline-block;
+            margin: 0.125rem;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .tag-lilac { background-color: #EAE6F3; color: #7C6B9B; }
+        .tag-peach { background-color: #FFEAE0; color: #D98B6B; }
+        .tag-blue { background-color: #E1F1FF; color: #6B9ED4; }
+        .tag-mint { background-color: #DFF7F0; color: #63A793; }
+        .tag-grey { background-color: #F3F4F6; color: #6B7280; }
+
+        /* Icon colors */
+        .fa-envelope { color: var(--primary); }
+        .fa-map-marker-alt { color: #FFAEBC; }
+        .fa-trophy { color: var(--primary); }
+        .fa-users { color: #FFAEBC; }
+
+        /* Social links */
+        .social-link-li { background: linear-gradient(to br, #A094E8, #8D7DD4); }
+        .social-link-gh { background: linear-gradient(to br, #888, #666); }
+        .social-link-ig { background: linear-gradient(to br, #FFD8BE, #FFAEBC, #C7BBE3); }
+        .social-link-tw { background: linear-gradient(to br, #BDE0FE, #9ACCE3); }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(45deg, #8A8197, var(--dark));
+            color: #DCD9E2;
+        }
+
+        .footer-github {
+            pointer-events: auto;
+            cursor: pointer;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-link {
+            transition: color 0.3s ease;
+            text-decoration: none;
+            color: #DCD9E2;
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+        }
+
+        footer .fab {
+            color: #C1BCCC;
+            transition: color 0.3s ease;
+        }
+
+        footer .fab:hover {
+            color: var(--primary);
+        }
+
+        .fa-heart {
+            color: #FFAEBC;
+        }
+
+        /* Edit/Delete buttons */
+        .form-actions {
+            display: none;
+            margin-top: 1rem;
+            gap: 0.5rem;
+        }
+
+        .form-actions.show {
+            display: flex;
+        }
+
+        .edit-btn, .delete-btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .edit-btn {
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            color: var(--dark);
+            box-shadow: 0 4px 10px rgba(189, 224, 254, 0.2);
+        }
+
+        .edit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(189, 224, 254, 0.3);
+        }
+
+        .delete-btn {
+            background: linear-gradient(45deg, #FFB6C1, #FFA0A0);
+            color: white;
+            box-shadow: 0 4px 10px rgba(255, 182, 193, 0.2);
+        }
+
+        .delete-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(255, 182, 193, 0.3);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: auto;
+                padding: 80px 0 60px;
+            }
+
+            .shape {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor hidden md:block"></div>
+    <div class="custom-cursor-outer hidden md:block"></div>
+
+    <!-- Header/Navigation -->
+    <header id="main-header" class="fixed w-full bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg shadow-sm z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#home" class="gradient-text text-xl font-extrabold tracking-wide">Sara Ghotge</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link font-medium">Home</a>
+                    <a href="#about" class="nav-link font-medium">About</a>
+                    <a href="#portfolio" class="nav-link font-medium">Portfolio</a>
+                    <a href="#contact" class="nav-link font-medium">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="focus:outline-none" aria-label="Toggle menu">
+                        <i class="fas fa-bars text-2xl" style="color: var(--primary);"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white bg-opacity-95 backdrop-filter backdrop-blur-lg w-full shadow-md">
+            <div class="container mx-auto px-6 py-4 flex flex-col space-y-4 text-center">
+                <a href="#home" class="block py-2 mobile-nav-link" style="color: var(--text-main);">Home</a>
+                <a href="#about" class="block py-2 mobile-nav-link" style="color: var(--text-main);">About</a>
+                <a href="#portfolio" class="block py-2 mobile-nav-link" style="color: var(--text-main);">Portfolio</a>
+                <a href="#contact" class="block py-2 mobile-nav-link" style="color: var(--text-main);">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section flex items-center justify-center pt-20 md:pt-0">
+        <div class="hero-overlay"></div>
+        <div class="floating-shapes" aria-hidden="true">
+            <div class="shape shape1"></div>
+            <div class="shape shape2"></div>
+            <div class="shape shape3"></div>
+        </div>
+        <div class="glass-card p-10 md:p-16 text-center relative z-10 animate__animated animate__fadeInUp mx-4 md:mx-0 max-w-3xl">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 text-white">
+                <span class="block">Hello, I'm</span>
+                <span class="gradient-text">Sara Ghotge</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 font-light" style="color: rgba(255, 255, 255, 0.9);">Engineering Student | Dancer | Artist</p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#portfolio" class="gradient-btn w-full sm:w-auto">Discover My Work</a>
+                <a href="#contact" class="outline-btn w-full sm:w-auto">Let's Connect</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-24" style="background: linear-gradient(to bottom right, #F8F5FF, #FFF0F5);">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in">
+                <span class="gradient-text">About Me</span>
+            </h2>
+            <div class="flex flex-col lg:flex-row items-start gap-12 lg:gap-16">
+                <!-- Left Column -->
+                <div class="lg:w-2/5 w-full fade-in">
+                    <div class="gradient-border mb-8 shadow-md">
+                        <div class="bg-white p-1">
+                            <img src="Sara5.jpeg" alt="Sara Ghotge" class="w-full h-auto rounded-lg object-cover">
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h4 class="text-xl font-bold mb-4 gradient-text">My Interests</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-lilac">Dance</span>
+                            <span class="tag tag-peach">Photography</span>
+                            <span class="tag tag-blue">Travel</span>
+                            <span class="tag tag-mint">Sketching</span>
+                            <span class="tag tag-peach">Cooking</span>
+                            <span class="tag tag-lilac">Music</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Column -->
+                <div class="lg:w-3/5 w-full fade-in" style="transition-delay: 0.2s;">
+                    <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                        <h3 class="text-3xl font-bold mb-4" style="color: var(--dark);">Hello there, I'm Sara!</h3>
+                        <p class="mb-8 text-lg leading-relaxed" style="color: var(--text-main);">I'm a first year engineering student at Fr.CRCE, Bandra. I like studying and learning new things regularly. I love to spend my free time dancing and sketching. My journey in technology is slowly beginning with a curiosity about how things work on the web, which will definitely evolve into a deep love for creating beautiful, functional websites and other projects.</p>
+
+                        <h4 class="text-2xl font-bold mb-6" style="color: var(--dark);">My Academics</h4>
+                        <div class="space-y-5">
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium" style="color: var(--text-main);">10th Boards (SSC)</span>
+                                    <span class="font-medium" style="color: var(--text-light);">97%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="97%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium" style="color: var(--text-main);">12th Boards (HSC)</span>
+                                    <span class="font-medium" style="color: var(--text-light);">88%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="88%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium" style="color: var(--text-main);">CET Score</span>
+                                    <span class="font-medium" style="color: var(--text-light);">97.35%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="97.35%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium" style="color: var(--text-main);">First Semester (Engineering)</span>
+                                    <span class="font-medium" style="color: var(--text-light);">9.5 CGPA (90.25%)</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="90.25%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-xl shadow-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-purple-50 to-blue-50 flex items-center justify-center mr-4 flex-shrink-0 shadow-sm">
+                                <i class="fas fa-trophy text-xl"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-lg" style="color: var(--dark);">20+ Awards</h5>
+                                <p class="text-sm" style="color: var(--text-light);">achieved till date</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-lg p-6 flex items-center hover:shadow-xl transition-shadow duration-300">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-pink-50 to-orange-50 flex items-center justify-center mr-4 flex-shrink-0 shadow-sm">
+                                <i class="fas fa-users text-xl"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-lg" style="color: var(--dark);">15+ Competitions</h5>
+                                <p class="text-sm" style="color: var(--text-light);">secured 1st rank</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in">
+                <span class="gradient-text">My Creative Portfolio</span>
+            </h2>
+
+            <!-- Sketches -->
+            <div class="mb-20 fade-in">
+                <div class="flex items-center justify-center mb-10">
+                    <div class="w-16 h-1 bg-gradient-to-r from-purple-100 to-pink-100 rounded mr-4"></div>
+                    <h3 class="text-3xl font-bold" style="color: var(--dark);">Sketches</h3>
+                    <div class="w-16 h-1 bg-gradient-to-r from-pink-100 to-purple-100 rounded ml-4"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Project 1 -->
+                    <div class="gallery-item shadow-lg">
+                        <div class="relative h-64 overflow-hidden rounded-t-xl">
+                            <img src="Cat.jpeg" alt="Cat sketch">
+                            <div class="project-overlay">
+                                <div class="project-overlay-content"></div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-bold text-xl mb-2 gradient-text">Cat</h4>
+                            <p class="mb-4 text-sm" style="color: var(--text-light);">One of my absolute favourites, animal as well as the sketch</p>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="tag tag-lilac">Pencil Colours</span>
+                                <span class="tag tag-blue">Acrylic</span>
+                                <span class="tag tag-mint">Smudging</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="gallery-item shadow-lg">
+                        <div class="relative h-64 overflow-hidden rounded-t-xl">
+                            <img src="Kingfisher.jpeg" alt="Kingfisher sketch">
+                            <div class="project-overlay">
+                                <div class="project-overlay-content"></div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-bold text-xl mb-2 gradient-text">Kingfisher</h4>
+                            <p class="mb-4 text-sm" style="color: var(--text-light);">A kingfisher waiting at the lake for its prey</p>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="tag tag-peach">Pencil Colours</span>
+                                <span class="tag tag-blue">Layers</span>
+                                <span class="tag tag-lilac">Water Colours</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="gallery-item shadow-lg">
+                        <div class="relative h-64 overflow-hidden rounded-t-xl">
+                            <img src="Lychee.jpeg" alt="Lychee sketch">
+                            <div class="project-overlay">
+                                <div class="project-overlay-content"></div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-bold text-xl mb-2 gradient-text">Lychee</h4>
+                            <p class="mb-4 text-sm" style="color: var(--text-light);">Lychees being one of the best fruits to have in summer</p>
+                            <div class="flex flex-wrap gap-1">
+                                <span class="tag tag-blue">Poster Colours</span>
+                                <span class="tag tag-lilac">Pencil Colours</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photography -->
+            <div class="fade-in" style="transition-delay: 0.2s;">
+                <div class="flex items-center justify-center mb-10">
+                    <div class="w-16 h-1 bg-gradient-to-r from-pink-100 to-blue-100 rounded mr-4"></div>
+                    <h3 class="text-3xl font-bold" style="color: var(--dark);">Random Clicks</h3>
+                    <div class="w-16 h-1 bg-gradient-to-r from-blue-100 to-pink-100 rounded ml-4"></div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="gallery-item rounded-xl shadow-md h-64 md:h-80 overflow-hidden">
+                        <img src="WhatsApp Image 2025-04-21 at 21.45.10.jpeg" alt="Photography 1">
+                    </div>
+                    <div class="gallery-item rounded-xl shadow-md h-64 md:h-80 overflow-hidden">
+                        <img src="WhatsApp Image 2025-04-21 at 21.46.52.jpeg" alt="Photography 2">
+                    </div>
+                    <div class="gallery-item rounded-xl shadow-md h-64 md:h-80 overflow-hidden">
+                        <img src="WhatsApp Image 2025-04-21 at 21.48.35.jpeg" alt="Photography 3">
+                    </div>
+                    <div class="gallery-item rounded-xl shadow-md h-64 md:h-80 overflow-hidden">
+                        <img src="WhatsApp Image 2025-04-21 at 21.50.09.jpeg" alt="Photography 4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24" style="background: linear-gradient(to bottom right, #F0F8FF, #FFF5FB);">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in">
+                <span class="gradient-text">Get In Touch</span>
+            </h2>
+            <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-stretch">
+                <!-- Left Column -->
+                <div class="lg:w-1/2 w-full fade-in">
+                    <div class="glass-card p-8 md:p-10 h-full flex flex-col justify-between" style="background-color: rgba(255, 255, 255, 0.5); border-color: rgba(199, 187, 227, 0.3);">
+                        <div>
+                            <h3 class="text-3xl font-bold mb-6 gradient-text">Say Hello!</h3>
+                            <p class="mb-8 text-lg" style="color: var(--text-main);">Feel free to reach out!!</p>
+
+                            <div class="mb-6 flex items-center">
+                                <div class="w-14 h-14 rounded-full bg-gradient-to-br from-purple-50 to-pink-50 flex items-center justify-center mr-5 flex-shrink-0 shadow-sm">
+                                    <i class="fas fa-envelope text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg" style="color: var(--dark);">Email</h4>
+                                    <a href="mailto:saraghotge@gmail.com" class="hover:text-opacity-80 transition-colors duration-300" style="color: var(--text-light);">saraghotge@gmail.com</a>
+                                </div>
+                            </div>
+
+                            <div class="mb-10 flex items-center">
+                                <div class="w-14 h-14 rounded-full bg-gradient-to-br from-pink-50 to-blue-50 flex items-center justify-center mr-5 flex-shrink-0 shadow-sm">
+                                    <i class="fas fa-map-marker-alt text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg" style="color: var(--dark);">Location</h4>
+                                    <p style="color: var(--text-light);">Mumbai</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold mb-4 text-lg gradient-text">Connect With Me</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="social-link-li w-12 h-12 rounded-full flex items-center justify-center text-white transition duration-300 hover:shadow-lg hover:-translate-y-1" aria-label="LinkedIn">
+                                    <i class="fab fa-linkedin-in text-xl"></i>
+                                </a>
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="social-link-gh w-12 h-12 rounded-full flex items-center justify-center text-white transition duration-300 hover:shadow-lg hover:-translate-y-1" aria-label="GitHub">
+                                    <i class="fab fa-github text-xl"></i>
+                                </a>
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="social-link-ig w-12 h-12 rounded-full flex items-center justify-center text-white transition duration-300 hover:shadow-lg hover:-translate-y-1" aria-label="Instagram">
+                                    <i class="fab fa-instagram text-xl"></i>
+                                </a>
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="social-link-tw w-12 h-12 rounded-full flex items-center justify-center text-white transition duration-300 hover:shadow-lg hover:-translate-y-1" aria-label="Twitter">
+                                    <i class="fab fa-twitter text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="lg:w-1/2 w-full fade-in" style="transition-delay: 0.2s;">
+                    <div class="gradient-border h-full shadow-sm">
+                        <form id="contact-form" action="https://formspree.io/f/xgolalpn" method="POST" class="bg-white rounded-lg p-8 md:p-10 h-full flex flex-col shadow-inner">
+                            <div class="mb-6">
+                                <label for="name" class="block mb-2 font-bold" style="color: var(--dark);">Your Name</label>
+                                <input type="text" id="name" name="name" placeholder="e.g., abc xyz" required>
+                            </div>
+                            <div class="mb-6">
+                                <label for="email" class="block mb-2 font-bold" style="color: var(--dark);">Your Email</label>
+                                <input type="email" id="email" name="email" placeholder="e.g., abc.xyz@example.com" required>
+                            </div>
+                            <div class="mb-6 flex-grow flex flex-col">
+                                <label for="message" class="block mb-2 font-bold" style="color: var(--dark);">Message</label>
+                                <textarea id="message" name="message" rows="6" placeholder="Let's talk!!" class="flex-grow resize-none" required></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" class="gradient-btn w-full">
+                                    Send Message <i class="fas fa-paper-plane ml-2"></i>
+                                </button>
+                            </div>
+                            
+                            <!-- Edit and Delete buttons -->
+                            <div class="form-actions" id="form-actions">
+                                <button type="button" class="edit-btn flex-1" id="edit-btn">
+                                    <i class="fas fa-edit mr-2"></i>Edit
+                                </button>
+                                <button type="button" class="delete-btn flex-1" id="delete-btn">
+                                    <i class="fas fa-trash-alt mr-2"></i>Delete
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="text-align:center; padding:40px; background:#111;">
+        <a href="https://github.com/sara21-g"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="color:white; font-size:28px; cursor:pointer;">
+            <i class="fab fa-github"></i>
+        </a>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile Menu Toggle
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    const icon = menuToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.toggle('fa-bars');
+                        icon.classList.toggle('fa-times');
+                    }
+                });
+
+                mobileNavLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        const icon = menuToggle.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                    });
+                });
+            }
+
+            // Custom Cursor
+            const cursor = document.querySelector('.custom-cursor');
+            const cursorOuter = document.querySelector('.custom-cursor-outer');
+            
+            if (cursor && cursorOuter && window.matchMedia('(min-width: 768px)').matches) {
+                document.addEventListener('mousemove', (e) => {
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                    cursorOuter.style.left = e.clientX + 'px';
+                    cursorOuter.style.top = e.clientY + 'px';
+                });
+
+                document.querySelectorAll('a, button, input[type="submit"], .gallery-item, .fab').forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        cursor.style.width = '30px';
+                        cursor.style.height = '30px';
+                        cursor.style.backgroundColor = 'rgba(255, 216, 190, 0.6)';
+                        cursorOuter.style.width = '50px';
+                        cursorOuter.style.height = '50px';
+                        cursorOuter.style.borderColor = 'rgba(255, 216, 190, 0.6)';
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        cursor.style.width = '20px';
+                        cursor.style.height = '20px';
+                        cursor.style.backgroundColor = 'rgba(199, 187, 227, 0.6)';
+                        cursorOuter.style.width = '40px';
+                        cursorOuter.style.height = '40px';
+                        cursorOuter.style.borderColor = 'rgba(199, 187, 227, 0.5)';
+                    });
+                });
+            }
+
+            // Intersection Observer for fade-in and skill bars
+            const fadeElems = document.querySelectorAll('.fade-in');
+            const skillProgressBars = document.querySelectorAll('.skill-progress');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2
+            };
+
+            const observerCallback = (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        if (entry.target.classList.contains('skill-progress')) {
+                            const width = entry.target.getAttribute('data-width');
+                            if (width) {
+                                requestAnimationFrame(() => {
+                                    entry.target.style.width = width;
+                                });
+                            }
+                        }
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+            fadeElems.forEach(elem => observer.observe(elem));
+            skillProgressBars.forEach(bar => observer.observe(bar));
+
+            // Header scroll effect
+            const header = document.getElementById('main-header');
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        header.classList.add('bg-opacity-95', 'shadow-md');
+                        header.classList.remove('bg-opacity-80', 'shadow-sm');
+                    } else {
+                        header.classList.remove('bg-opacity-95', 'shadow-md');
+                        header.classList.add('bg-opacity-80', 'shadow-sm');
+                    }
+                });
+            }
+
+            // Active Nav Link
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            function setActiveLink() {
+                let current = 'home';
+                const headerHeight = header ? header.offsetHeight : 0;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (window.pageYOffset >= (sectionTop - headerHeight - 50)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', setActiveLink);
+            setActiveLink();
+
+            // Current Year
+            const yearElement = document.getElementById('current-year');
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
+
+            // Contact Form - Store form data and show edit/delete buttons
+            const contactForm = document.getElementById('contact-form');
+            const formActions = document.getElementById('form-actions');
+            const editBtn = document.getElementById('edit-btn');
+            const deleteBtn = document.getElementById('delete-btn');
+            let submittedData = null;
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    // Store the submitted data
+                    submittedData = {
+                        name: document.getElementById('name').value,
+                        email: document.getElementById('email').value,
+                        message: document.getElementById('message').value
+                    };
+                    
+                    // Show edit/delete buttons after submission
+                    setTimeout(() => {
+                        if (formActions) {
+                            formActions.classList.add('show');
+                        }
+                    }, 1000);
+                    
+                    // Form will submit to Formspree normally
+                });
+
+                // Edit button functionality
+                if (editBtn) {
+                    editBtn.addEventListener('click', function() {
+                        if (submittedData) {
+                            document.getElementById('name').value = submittedData.name;
+                            document.getElementById('email').value = submittedData.email;
+                            document.getElementById('message').value = submittedData.message;
+                            
+                            // Scroll to form
+                            contactForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            
+                            // Focus on name field
+                            document.getElementById('name').focus();
+                        }
+                    });
+                }
+
+                // Delete button functionality
+                if (deleteBtn) {
+                    deleteBtn.addEventListener('click', function() {
+                        if (confirm('Are you sure you want to delete the submitted form data? This will clear the form.')) {
+                            submittedData = null;
+                            contactForm.reset();
+                            formActions.classList.remove('show');
+                            alert('Form data has been cleared successfully!');
+                        }
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
