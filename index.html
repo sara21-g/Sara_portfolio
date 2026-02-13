@@ -765,47 +765,25 @@
                 <!-- Right Column -->
                 <div class="lg:w-1/2 w-full fade-in" style="transition-delay: 0.2s;">
                     <div class="gradient-border h-full shadow-sm">
-                        <form id="contact-form" 
-                            action="https://formspree.io/f/xgolalpn" 
-                            method="POST"
-                            class="bg-white rounded-lg p-8 md:p-10 h-full flex flex-col shadow-inner">
-
+                        <form id="contact-form" class="bg-white rounded-lg p-8 md:p-10 h-full flex flex-col shadow-inner">
                             <div class="mb-6">
                                 <label for="name" class="block mb-2 font-bold" style="color: var(--dark);">Your Name</label>
                                 <input type="text" id="name" name="name" placeholder="e.g., abc xyz" required>
                             </div>
-
                             <div class="mb-6">
                                 <label for="email" class="block mb-2 font-bold" style="color: var(--dark);">Your Email</label>
                                 <input type="email" id="email" name="email" placeholder="e.g., abc.xyz@example.com" required>
                             </div>
-
                             <div class="mb-6 flex-grow flex flex-col">
                                 <label for="message" class="block mb-2 font-bold" style="color: var(--dark);">Message</label>
                                 <textarea id="message" name="message" rows="6" placeholder="Let's talk!!" class="flex-grow resize-none" required></textarea>
                             </div>
-
                             <div>
                                 <button type="submit" class="gradient-btn w-full">
                                     Send Message <i class="fas fa-paper-plane ml-2"></i>
                                 </button>
                             </div>
                         </form>
-
-                    <!-- Success Message + Edit/Delete -->
-                    <div id="form-success" class="hidden mt-6 text-center">
-                        <p class="text-green-600 font-bold mb-4">
-                            ✅ Message sent successfully!
-                        </p>
-                        <div class="flex justify-center gap-4">
-                            <button id="edit-btn" class="outline-btn">
-                                Edit
-                            </button>
-                            <button id="delete-btn" class="gradient-btn">
-                                Delete
-                            </button>
-                        </div>
-                    </div>
                     </div>
                 </div>
             </div>
@@ -824,51 +802,152 @@
 
 
     <script>
-                // Contact Form with Formspree + Edit/Delete
-        const contactForm = document.getElementById('contact-form');
-        const successBox = document.getElementById('form-success');
-        const editBtn = document.getElementById('edit-btn');
-        const deleteBtn = document.getElementById('delete-btn');
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile Menu Toggle
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-        if (contactForm) {
-            contactForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-
-                const formData = new FormData(contactForm);
-
-                const response = await fetch(contactForm.action, {
-                    method: "POST",
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    const icon = menuToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.toggle('fa-bars');
+                        icon.classList.toggle('fa-times');
                     }
                 });
 
-                if (response.ok) {
-                    contactForm.classList.add("hidden");
-                    successBox.classList.remove("hidden");
-                } else {
-                    alert("Oops! Something went wrong.");
-                }
-            });
-        }
+                mobileNavLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        const icon = menuToggle.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                    });
+                });
+            }
 
-        // Edit Button
-        if (editBtn) {
-            editBtn.addEventListener('click', function() {
-                contactForm.classList.remove("hidden");
-                successBox.classList.add("hidden");
-            });
-        }
+            // Custom Cursor
+            const cursor = document.querySelector('.custom-cursor');
+            const cursorOuter = document.querySelector('.custom-cursor-outer');
+            
+            if (cursor && cursorOuter && window.matchMedia('(min-width: 768px)').matches) {
+                document.addEventListener('mousemove', (e) => {
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                    cursorOuter.style.left = e.clientX + 'px';
+                    cursorOuter.style.top = e.clientY + 'px';
+                });
 
-        // Delete Button
-        if (deleteBtn) {
-            deleteBtn.addEventListener('click', function() {
-                contactForm.reset();
-                contactForm.classList.remove("hidden");
-                successBox.classList.add("hidden");
-            });
-        }
+                document.querySelectorAll('a, button, input[type="submit"], .gallery-item, .fab').forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        cursor.style.width = '30px';
+                        cursor.style.height = '30px';
+                        cursor.style.backgroundColor = 'rgba(255, 216, 190, 0.6)';
+                        cursorOuter.style.width = '50px';
+                        cursorOuter.style.height = '50px';
+                        cursorOuter.style.borderColor = 'rgba(255, 216, 190, 0.6)';
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        cursor.style.width = '20px';
+                        cursor.style.height = '20px';
+                        cursor.style.backgroundColor = 'rgba(199, 187, 227, 0.6)';
+                        cursorOuter.style.width = '40px';
+                        cursorOuter.style.height = '40px';
+                        cursorOuter.style.borderColor = 'rgba(199, 187, 227, 0.5)';
+                    });
+                });
+            }
+
+            // Intersection Observer for fade-in and skill bars
+            const fadeElems = document.querySelectorAll('.fade-in');
+            const skillProgressBars = document.querySelectorAll('.skill-progress');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2
+            };
+
+            const observerCallback = (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        if (entry.target.classList.contains('skill-progress')) {
+                            const width = entry.target.getAttribute('data-width');
+                            if (width) {
+                                requestAnimationFrame(() => {
+                                    entry.target.style.width = width;
+                                });
+                            }
+                        }
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+            fadeElems.forEach(elem => observer.observe(elem));
+            skillProgressBars.forEach(bar => observer.observe(bar));
+
+            // Header scroll effect
+            const header = document.getElementById('main-header');
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        header.classList.add('bg-opacity-95', 'shadow-md');
+                        header.classList.remove('bg-opacity-80', 'shadow-sm');
+                    } else {
+                        header.classList.remove('bg-opacity-95', 'shadow-md');
+                        header.classList.add('bg-opacity-80', 'shadow-sm');
+                    }
+                });
+            }
+
+            // Active Nav Link
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            function setActiveLink() {
+                let current = 'home';
+                const headerHeight = header ? header.offsetHeight : 0;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (window.pageYOffset >= (sectionTop - headerHeight - 50)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', setActiveLink);
+            setActiveLink();
+
+            // Current Year
+            const yearElement = document.getElementById('current-year');
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
+
+            // Contact Form
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! I will get back to you soon.');
+                    contactForm.reset();
+                });
+            }
+        });
     </script>
 </body>
 
